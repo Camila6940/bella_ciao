@@ -9,6 +9,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden; /* Evita que aparezca una barra de desplazamiento en la ventana */
         }
         #osmd-container {
             width: 90%;
@@ -19,12 +20,24 @@
 <body>
     <div id="osmd-container"></div>
     <script>
+        // Función para cargar y renderizar la partitura
         async function loadMusicXML() {
             const osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmd-container");
             await osmd.load("Bela_Ciao_Guitar_TAB.mxl"); // Reemplaza con el nombre exacto de tu archivo .mxl
             osmd.render();
         }
+
+        // Llamar a la función para cargar la partitura
         loadMusicXML();
+
+        // Script para desplazamiento automático
+        window.onload = function () {
+            let scrollSpeed = 30; // Ajusta la velocidad (mayor número = más lento)
+            let scrollStep = 1;   // Píxeles por desplazamiento
+            setInterval(() => {
+                window.scrollBy(0, scrollStep);
+            }, scrollSpeed);
+        };
     </script>
 </body>
 </html>
