@@ -30,15 +30,18 @@
         // Llamar a la función para cargar la partitura
         loadMusicXML();
 
-        // Script para desplazamiento automático con retraso de 3 segundos
+        // Función para comenzar el desplazamiento automático después de 3 segundos
+        function startAutoScroll() {
+            let scrollSpeed = 30; // Ajusta la velocidad (mayor número = más lento)
+            let scrollStep = 1;   // Píxeles por desplazamiento
+            setInterval(() => {
+                window.scrollBy(0, scrollStep);
+            }, scrollSpeed);
+        }
+
+        // Retrasar el inicio del desplazamiento por 3 segundos
         window.onload = function () {
-            setTimeout(function() {
-                let scrollSpeed = 20; // Ajusta la velocidad (mayor número = más lento)
-                let scrollStep = 1;   // Píxeles por desplazamiento
-                setInterval(() => {
-                    window.scrollBy(0, scrollStep);
-                }, scrollSpeed);
-            }, 3000); // Esperar 3000 ms (3 segundos) antes de empezar a desplazarse
+            setTimeout(startAutoScroll, 3000); // Espera 3000 ms (3 segundos) antes de empezar a desplazarse
         };
     </script>
 </body>
