@@ -30,19 +30,29 @@
         // Llamar a la función para cargar la partitura
         loadMusicXML();
 
-        // Función para comenzar el desplazamiento automático después de 3 segundos
+        // Función para comenzar el desplazamiento automático
+        let scrollInterval;
         function startAutoScroll() {
-            let scrollSpeed = 10; // Ajusta la velocidad (mayor número = más lento)
+            let scrollSpeed = 30; // Ajusta la velocidad (mayor número = más lento)
             let scrollStep = 1;   // Píxeles por desplazamiento
-            setInterval(() => {
+            scrollInterval = setInterval(() => {
                 window.scrollBy(0, scrollStep);
             }, scrollSpeed);
         }
 
-        // Retrasar el inicio del desplazamiento por 3 segundos
+        // Función para detener el desplazamiento automático
+        function stopAutoScroll() {
+            clearInterval(scrollInterval); // Detiene el desplazamiento
+        }
+
+        // Retrasar el inicio del desplazamiento por 3 segundos y detenerlo después de 11 segundos
         window.onload = function () {
-            setTimeout(startAutoScroll, 5000); // Espera 3000 ms (3 segundos) antes de empezar a desplazarse
+            setTimeout(() => {
+                startAutoScroll(); // Comienza a desplazarse después de 3 segundos
+                setTimeout(stopAutoScroll, 11000); // Detiene el desplazamiento después de 11 segundos
+            }, 3000); // Espera 3000 ms (3 segundos) antes de empezar a desplazarse
         };
     </script>
 </body>
 </html>
+
